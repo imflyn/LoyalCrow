@@ -29,12 +29,31 @@ body, html, #container {
     top: 8px;
     left: 0;
     right: 0;
-    padding-left: 5%;
-    padding-right: 5%;
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
 .search_bar_panel {
     margin: 0;
     padding: 0;
-    height: 56px;
+    height: 48px;
+}
+
+#search_button {
+    position: absolute;
+    top: 9px;
+    right: 8px;
+    background-color: transparent;
+    border: transparent;
+    font-size: 28px;
+}
+
+#search_label {
+    background-color: transparent;
+    border: transparent;
+    padding-left: 16px;
+    font-size: 16px;
+    height: 48px;
+    line-height: 48px;
+    width: 100%;
 }
