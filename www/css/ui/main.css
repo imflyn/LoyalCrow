@@ -1,0 +1,26 @@
+body, html, #container {
+    width: 100%;
+    height: 100%;
+    margin: 0
+}
+
+#my_location {
+    position: absolute;
+    margin: auto;
+    bottom: 30px;
+    left: 8px;
+    width: 40px;
+    height: 40px;
+    padding: 1px;
+}
+
+#nearby_station {
+    position: absolute;
+    margin: auto;
+    bottom: 76px;
+    left: 8px;
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+}
+
