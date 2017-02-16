@@ -17,6 +17,13 @@ var map = new AMap.Map('container', {
     zoom: 12
 });
 
+// map.plugin(["AMap.ToolBar"], function () {
+//     //隐藏工具条
+//     var toolBar = new AMap.ToolBar();
+//     map.addControl(toolBar);
+//     toolBar.hide();
+// });
+
 setTimeout(function () {
     var my_location = [120.6711999117, 31.2954502809];
 
