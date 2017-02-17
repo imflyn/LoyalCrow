@@ -25,14 +25,14 @@
 </head>
 <body>
 <div id="container"></div>
-<div class="row s12 m12" id="search_bar">
+<div class="col s12 m12" id="search_bar">
     <div class="card-panel white search_bar_panel ">
         <label class="waves-effect " id="search_label">查公交、找线路</label>
-        <button class="material-icons" id="search_button">search</button>
+        <button class="material-icons grey-text" id="search_button">search</button>
     </div>
 </div>
 
-<button id="my_location" class="waves-effect waves-ripple white btn">
+<button id="my_location" class="waves-effect waves-ripple white btn" onclick="map_move_to_my_location()">
     <img src="../img/icon_my_location.png" width="38px" height="38px"/>
 </button>
 <button id="nearby_station" class="waves-effect waves-ripple white btn">

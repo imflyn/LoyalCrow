@@ -27,8 +27,6 @@ body, html, #container {
 #search_bar {
     position: absolute;
     top: 8px;
-    left: 0;
-    right: 0;
     margin-left: 8px;
     margin-right: 8px;
 }
@@ -41,17 +39,17 @@ body, html, #container {
 
 #search_button {
     position: absolute;
-    top: 9px;
-    right: 8px;
+    top: 10px;
+    left: 8px;
     background-color: transparent;
     border: transparent;
-    font-size: 28px;
+    font-size: 26px;
 }
 
 #search_label {
     background-color: transparent;
     border: transparent;
-    padding-left: 16px;
+    padding-left: 56px;
     font-size: 16px;
     height: 48px;
     line-height: 48px;
