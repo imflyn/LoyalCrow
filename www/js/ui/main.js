@@ -67,6 +67,7 @@ function get_my_position() {
   //解析定位结果
   function onComplete(data) {
     hide_loading_dialog();
+    console.log("position:" + "(" + data.position.getLng() + "," + data.position.getLat() + ")");
     my_position = [data.position.getLng(), data.position.getLat()];
     map_move_to(my_position);
   }
