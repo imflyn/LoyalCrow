@@ -40,55 +40,10 @@ function onDeviceReady() {
   // }
 
   // document.addEventListener('backbutton', onBackKeyDown, false);
-
   get_my_position();
 }
 
 function get_my_position() {
-  // //定位
-  // navigator.geolocation.getCurrentPosition(function (position) {
-  //       console.log('Latitude: ' + position.coords.latitude + '\n' +
-  //           'Longitude: ' + position.coords.longitude + '\n' +
-  //           'Altitude: ' + position.coords.altitude + '\n' +
-  //           'Accuracy: ' + position.coords.accuracy + '\n' +
-  //           'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
-  //           'Heading: ' + position.coords.heading + '\n' +
-  //           'Speed: ' + position.coords.speed + '\n' +
-  //           'Timestamp: ' + position.timestamp + '\n');
-  //
-  //       //谷歌坐标转为高德坐标
-  //       AMap.convertFrom([position.coords.longitude, position.coords.latitude], 'gps',
-  //           function (status, result) {
-  //             console.log("status:" + status);
-  //             console.log("result:" + result);
-  //
-  //             if ('complete' == status) {
-  //               //定位成功31.296033528646,120.665633409289
-  //
-  //               my_position = [result.locations[0].lng, result.locations[0].lat];
-  //               map_move_to(my_position);
-  //             }
-  //           }
-  //       );
-  //     }, function (error) {
-  //       console.log('code: ' + error.code + '\n' +
-  //           'message: ' + error.message + '\n');
-  //       switch (error.code) {
-  //         case error.PERMISSION_DENIED:
-  //           Materialize.toast('定位失败，请检查应用是否有定位权限', 5000);
-  //           break;
-  //         case error.POSITION_UNAVAILABLE:
-  //           Materialize.toast('定位位置信息不可用', 5000);
-  //           break;
-  //         case error.TIMEOUT:
-  //         case error.UNKNOWN_ERROR:
-  //           Materialize.toast('定位失败，请检查网络是否稳定或定位权限是否开启', 5000);
-  //           break;
-  //       }
-  //     },
-  //     {timeout: 15000}
-  // );
-
   //加载地图，调用浏览器定位服务
   map.plugin('AMap.Geolocation', function () {
     var geolocation = new AMap.Geolocation({
@@ -97,8 +52,8 @@ function get_my_position() {
       maximumAge: 60000,           //定位结果缓存0毫秒，默认：0
       convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
       showButton: false,        //显示定位按钮，默认：true
-      buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
-      buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+      // buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
+      // buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
       showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
       showCircle: false,        //定位成功后用圆圈表示定位精度范围，默认：true
       panToLocation: false,     //定位成功后将定位到的位置作为地图中心点，默认：true
@@ -111,14 +66,30 @@ function get_my_position() {
   });
   //解析定位结果
   function onComplete(data) {
+    hide_loading_dialog();
     my_position = [data.position.getLng(), data.position.getLat()];
     map_move_to(my_position);
   }
 
   //解析定位错误信息
   function onError(data) {
-    Materialize.toast('定位失败，请检查网络是否稳定或定位权限是否开启', 5000);
+    hide_loading_dialog();
+    navigator.notification.alert(
+        '网络不稳定或未开启定位权限!',
+        null,
+        '定位失败',
+        '确定'
+    );
   }
+}
+
+function show_loading_dialog() {
+  document.getElementById('loading_dialog').style.visibility = "visible"
+  document.getElementById('loading_bg').style.visibility = "visible"
+}
+function hide_loading_dialog() {
+  document.getElementById('loading_dialog').style.visibility = "hidden"
+  document.getElementById('loading_bg').style.visibility = "hidden"
 }
 
 //移动地图
@@ -128,6 +99,7 @@ function map_move_to(lngLat) {
 }
 
 function map_move_to_my_location() {
+  show_loading_dialog();
   get_my_position();
 }
 
