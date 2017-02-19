@@ -68,13 +68,12 @@ function init_my_position() {
         console.log("position:" + "(" + data.position.getLng() + "," + data.position.getLat() + ")");
         my_position = [data.position.getLng(), data.position.getLat()];
         map_move_to(my_position);
-        // draw_center_marker(my_position);
         draw_circle(my_position);
         search_bus_station(my_position);
     }
 
     //解析定位错误信息
-    function onError(data) {
+    function onError() {
         hide_loading_dialog();
         navigator.notification.alert(
             '网络不稳定或未开启定位权限!',
@@ -85,12 +84,12 @@ function init_my_position() {
     }
 }
 function show_loading_dialog() {
-    document.getElementById('loading_dialog').style.visibility = "visible"
-    document.getElementById('loading_bg').style.visibility = "visible"
+    document.getElementById('loading_dialog').style.visibility = "visible";
+    document.getElementById('loading_bg').style.visibility = "visible";
 }
 function hide_loading_dialog() {
-    document.getElementById('loading_dialog').style.visibility = "hidden"
-    document.getElementById('loading_bg').style.visibility = "hidden"
+    document.getElementById('loading_dialog').style.visibility = "hidden";
+    document.getElementById('loading_bg').style.visibility = "hidden";
 }
 //移动地图
 function map_move_to(lngLat) {
@@ -117,17 +116,6 @@ function draw_circle(lngLat) {
         strokeStyle: "solid"
     });
     circle.setMap(map);
-}
-var center_marker = null;
-function draw_center_marker(lngLat) {
-    if (null != center_marker) {
-        center_marker.setMap(null);
-    }
-    center_marker = new AMap.Marker({
-        map: map,
-        icon: "http://webapi.amap.com/theme/v1.3/markers/n/loc.png",
-        position: [lngLat[0], lngLat[1]],
-    });
 }
 var marker_list = [];
 function draw_marker(lngLat, title) {
