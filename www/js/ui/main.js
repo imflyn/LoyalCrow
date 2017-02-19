@@ -79,7 +79,7 @@ function init_my_position() {
         map_move_to(my_position);
         draw_circle(my_position);
         draw_center_marker(my_position);
-        search_bus_station(my_position);
+        search_bus_station(my_position, data.addressComponent.city);
     }
 
     //解析定位错误信息
@@ -189,9 +189,9 @@ function createXMLRequest() {
         request = new XMLHttpRequest();
     }
 }
-function search_bus_station(lngLat) {
+function search_bus_station(lngLat, city) {
     url = "http://restapi.amap.com/v3/place/around?key=b72c9571b039d067f60280808d545520&location="
-        + lngLat[0] + "," + lngLat[1] + "&output=json&radius=500&types=150700&city=0512&extensions=all&offset=100";
+        + lngLat[0] + "," + lngLat[1] + "&output=json&radius=500&types=150700&city=" + city + "&extensions=all&offset=100";
     //实现对时间的调用
     createXMLRequest();
     //通过get方式发送request请求，true表示是异步请求
