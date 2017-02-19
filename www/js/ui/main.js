@@ -41,8 +41,10 @@ function onDeviceReady() {
     init_my_position();
 }
 var geo_location = null;
+var getting_location = false;
 function init_my_position() {
     //加载地图，调用浏览器定位服务
+    getting_location = true;
     map.plugin('AMap.Geolocation', function () {
         geo_location = new AMap.Geolocation({
             enableHighAccuracy: true,//是否使用高精度定位，默认:true
@@ -64,6 +66,7 @@ function init_my_position() {
     });
     //解析定位结果
     function onComplete(data) {
+        getting_location = false;
         hide_loading_dialog();
         console.log("position:" + "(" + data.position.getLng() + "," + data.position.getLat() + ")");
         my_position = [data.position.getLng(), data.position.getLat()];
@@ -74,6 +77,7 @@ function init_my_position() {
 
     //解析定位错误信息
     function onError() {
+        getting_location = false;
         hide_loading_dialog();
         navigator.notification.alert(
             '网络不稳定或未开启定位权限!',
@@ -97,6 +101,10 @@ function map_move_to(lngLat) {
     map.panTo(lngLat);
 }
 function map_move_to_my_location() {
+    if (getting_location) {
+        console.log('正在定位中...');
+        return;
+    }
     show_loading_dialog();
     if (geo_location == null) {
         init_my_position();
