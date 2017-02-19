@@ -29,6 +29,13 @@ var map = new AMap.Map('container', {
     resizeEnable: true,
     zoom: 10
 });
+map.on('complete', function () {
+    init_my_position();
+});
+map.on('moveend', function () {
+    draw_center_marker([map.getCenter().lng, map.getCenter().lat]);
+    search_bus_station([map.getCenter().lng, map.getCenter().lat]);
+});
 document.getElementsByClassName("amap-logo")[0].style.visibility = "hidden";
 document.getElementsByClassName("amap-copyright")[0].style.visibility = "hidden";
 function onDeviceReady() {
@@ -38,7 +45,6 @@ function onDeviceReady() {
     //     console.log(navigator.appName);
     // }
     // document.addEventListener('backbutton', onBackKeyDown, false);
-    init_my_position();
 }
 var geo_location = null;
 var getting_location = false;
@@ -72,6 +78,7 @@ function init_my_position() {
         my_position = [data.position.getLng(), data.position.getLat()];
         map_move_to(my_position);
         draw_circle(my_position);
+        draw_center_marker(my_position);
         search_bus_station(my_position);
     }
 
@@ -132,7 +139,6 @@ function draw_marker(lngLat, title) {
         position: [lngLat[0], lngLat[1]],
         clickable: true
     });
-    // marker.getIcon().setSize(1);
     marker.setLabel({//label默认蓝框白底左上角显示，样式className为：amap-marker-label
         offset: new AMap.Pixel((-5.2) * title.length, -32),//修改label相对于maker的位置
         content: title
@@ -140,6 +146,20 @@ function draw_marker(lngLat, title) {
     marker.on('click', function () {
     });
     marker_list.push(marker);
+}
+var center_marker;
+function draw_center_marker(lngLat) {
+    if (null != center_marker) {
+        center_marker.setMap(null);
+    }
+    center_marker = new AMap.Marker({
+        map: map,
+        position: [lngLat[0], lngLat[1]],
+        content: '<div class=\"marker\"></div>',
+    });
+    if (lngLat[0] == my_position[0] && lngLat[1] == my_position[1]) {
+        center_marker.setOffset(new AMap.Pixel(-16, -16));
+    }
 }
 var visibility = true;
 function toggle_markers_visibility() {
