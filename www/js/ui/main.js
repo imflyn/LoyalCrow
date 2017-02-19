@@ -102,8 +102,8 @@ function draw_circle(lngLat) {
         center: new AMap.LngLat(lngLat[0], lngLat[1]),// 圆心位置
         radius: 500, //半径
         strokeColor: "#4db6ac", //线颜色
-        strokeOpacity: 0.8, //线透明度
-        strokeWeight: 1, //线粗细度
+        strokeOpacity: 0.7, //线透明度
+        strokeWeight: 0.7, //线粗细度
         fillOpacity: 0,//填充透明度
         strokeStyle: "solid"
     });
@@ -164,12 +164,14 @@ function search_bus_station(lngLat) {
 function on_get_stations() {
     if (request.readyState == 4) {
         if (request.status == 200) {
+            map.remove(marker_list);
             var nearby_stations = JSON.parse(request.responseText);
             if (nearby_stations.status == "1") {
                 marker_list = [];
+                visibility = true;
                 for (var i = 0; i < nearby_stations.pois.length; i++) {
-                    station = nearby_stations.pois[i];
-                    draw_marker(station.location.split(','), station.name);
+                    var location = nearby_stations.pois[i].location.split(',');
+                    draw_marker([location[0], location[1]], nearby_stations.pois[i].name);
                 }
             }
         }
