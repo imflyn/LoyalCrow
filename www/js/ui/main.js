@@ -23,12 +23,14 @@ else {
 window.addEventListener('load', function () {
     document.addEventListener('deviceready', onDeviceReady, false);
 });
-my_position = null;
+var my_position = null;
 //加载高德地图
 var map = new AMap.Map('container', {
     resizeEnable: true,
     zoom: 10
 });
+document.getElementsByClassName("amap-logo")[0].style.visibility = "hidden";
+document.getElementsByClassName("amap-copyright")[0].style.visibility = "hidden";
 function onDeviceReady() {
     //清除之前的页面记录
     navigator.app.clearHistory();
@@ -36,12 +38,13 @@ function onDeviceReady() {
     //     console.log(navigator.appName);
     // }
     // document.addEventListener('backbutton', onBackKeyDown, false);
-    get_my_position();
+    init_my_position();
 }
-function get_my_position() {
+var geo_location = null;
+function init_my_position() {
     //加载地图，调用浏览器定位服务
     map.plugin('AMap.Geolocation', function () {
-        var geolocation = new AMap.Geolocation({
+        geo_location = new AMap.Geolocation({
             enableHighAccuracy: true,//是否使用高精度定位，默认:true
             timeout: 15000,          //超过10秒后停止定位，默认：无穷大
             maximumAge: 60000,           //定位结果缓存0毫秒，默认：0
@@ -54,10 +57,10 @@ function get_my_position() {
             panToLocation: false,     //定位成功后将定位到的位置作为地图中心点，默认：true
             zoomToAccuracy: false      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
         });
-        map.addControl(geolocation);
-        geolocation.getCurrentPosition();
-        AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
-        AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+        map.addControl(geo_location);
+        geo_location.getCurrentPosition();
+        AMap.event.addListener(geo_location, 'complete', onComplete);//返回定位信息
+        AMap.event.addListener(geo_location, 'error', onError);      //返回定位出错信息
     });
     //解析定位结果
     function onComplete(data) {
@@ -65,6 +68,7 @@ function get_my_position() {
         console.log("position:" + "(" + data.position.getLng() + "," + data.position.getLat() + ")");
         my_position = [data.position.getLng(), data.position.getLat()];
         map_move_to(my_position);
+        // draw_center_marker(my_position);
         draw_circle(my_position);
         search_bus_station(my_position);
     }
@@ -95,7 +99,12 @@ function map_move_to(lngLat) {
 }
 function map_move_to_my_location() {
     show_loading_dialog();
-    get_my_position();
+    if (geo_location == null) {
+        init_my_position();
+    }
+    else {
+        geo_location.getCurrentPosition();
+    }
 }
 function draw_circle(lngLat) {
     var circle = new AMap.Circle({
@@ -109,7 +118,18 @@ function draw_circle(lngLat) {
     });
     circle.setMap(map);
 }
-marker_list = [];
+var center_marker = null;
+function draw_center_marker(lngLat) {
+    if (null != center_marker) {
+        center_marker.setMap(null);
+    }
+    center_marker = new AMap.Marker({
+        map: map,
+        icon: "http://webapi.amap.com/theme/v1.3/markers/n/loc.png",
+        position: [lngLat[0], lngLat[1]],
+    });
+}
+var marker_list = [];
 function draw_marker(lngLat, title) {
     var marker = new AMap.Marker({
         map: map,
@@ -118,12 +138,14 @@ function draw_marker(lngLat, title) {
     });
     // marker.getIcon().setSize(1);
     marker.setLabel({//label默认蓝框白底左上角显示，样式className为：amap-marker-label
-        offset: new AMap.Pixel((-5.28) * title.length, -26),//修改label相对于maker的位置
+        offset: new AMap.Pixel((-5.2) * title.length, -32),//修改label相对于maker的位置
         content: title
+    });
+    marker.on('click', function () {
     });
     marker_list.push(marker);
 }
-visibility = true;
+var visibility = true;
 function toggle_markers_visibility() {
     visibility = !visibility;
     for (var i = 0; i < marker_list.length; i++) {
@@ -162,17 +184,15 @@ function search_bus_station(lngLat) {
     request.send();
 }
 function on_get_stations() {
-    if (request.readyState == 4) {
-        if (request.status == 200) {
-            map.remove(marker_list);
-            var nearby_stations = JSON.parse(request.responseText);
-            if (nearby_stations.status == "1") {
-                marker_list = [];
-                visibility = true;
-                for (var i = 0; i < nearby_stations.pois.length; i++) {
-                    var location = nearby_stations.pois[i].location.split(',');
-                    draw_marker([location[0], location[1]], nearby_stations.pois[i].name);
-                }
+    if (request.readyState == 4 && request.status == 200) {
+        map.remove(marker_list);
+        var nearby_stations = JSON.parse(request.responseText);
+        if (nearby_stations.status == "1") {
+            marker_list = [];
+            visibility = true;
+            for (var i = 0; i < nearby_stations.pois.length; i++) {
+                var location = nearby_stations.pois[i].location.split(',');
+                draw_marker([location[0], location[1]], nearby_stations.pois[i].name);
             }
         }
     }
