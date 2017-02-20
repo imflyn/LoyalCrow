@@ -54,6 +54,8 @@ function onDeviceReady() {
     //     console.log(navigator.appName);
     // }
     // document.addEventListener('backbutton', onBackKeyDown, false);
+
+    StatusBar.styleDefault();
 }
 var geo_location = null;
 var getting_location = false;
