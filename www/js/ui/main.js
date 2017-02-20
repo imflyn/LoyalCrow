@@ -50,11 +50,7 @@ document.getElementsByClassName("amap-copyright")[0].style.visibility = "hidden"
 function onDeviceReady() {
     //清除之前的页面记录
     navigator.app.clearHistory();
-    // function onBackKeyDown() {
-    //     console.log(navigator.appName);
-    // }
-    // document.addEventListener('backbutton', onBackKeyDown, false);
-
+    StatusBar.show();
     StatusBar.styleDefault();
 }
 var geo_location = null;
@@ -111,7 +107,6 @@ function onGetCurrentPosition(lngLat, city) {
     draw_center_marker(lngLat);
     search_bus_station(lngLat, city);
 }
-
 function show_loading_dialog() {
     document.getElementById('loading_dialog').style.visibility = "visible";
     document.getElementById('loading_bg').style.visibility = "visible";
@@ -194,7 +189,6 @@ function draw_my_position_marker(lngLat) {
         })
     });
 }
-
 var visibility = true;
 function toggle_markers_visibility() {
     visibility = !visibility;
