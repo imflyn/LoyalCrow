@@ -27,7 +27,7 @@
 <div id="container"></div>
 <div class="col s12 m12" id="search_bar">
     <div class="card-panel white search_bar_panel ">
-        <label class="waves-effect " id="search_label">查公交、找线路</label>
+        <label class="waves-effect " id="search_label" onclick="go_to_search()">查公交、找线路</label>
         <button class="material-icons grey-text" id="search_button">search</button>
     </div>
 </div>
@@ -41,11 +41,21 @@
 
 <div class="grey bg_loading" id="loading_dialog">
 </div>
-<div class="card-panel white loading_panel" id="loading_bg">
-    <span style="font-size: 16px">正在定位</span>
-    <div class="progress teal lighten-2" id="loading_progress">
-        <div class="indeterminate"></div>
+<div class="card-panel white loading_panel valign-wrapper" id="loading_bg">
+    <div class="preloader-wrapper small active">
+        <div class="spinner-layer spinner-green-only" id="loading_progress">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
     </div>
+    <span style="font-size: 16px;padding-top: 4px;margin-left: 24px">正在定位中...</span>
 </div>
 
 

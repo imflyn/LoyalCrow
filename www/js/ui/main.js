@@ -30,7 +30,16 @@ var map = new AMap.Map('container', {
     zoom: 10
 });
 map.on('complete', function () {
-    init_my_position();
+    my_position = sessionStorage.getItem('my_position');
+    var city = sessionStorage.getItem('city');
+    if (my_position == null) {
+        show_loading_dialog();
+        init_my_position();
+    }
+    else {
+        my_position = my_position.split(',');
+        onGetCurrentPosition(my_position, city);
+    }
 });
 map.on('moveend', function () {
     draw_center_marker([map.getCenter().lng, map.getCenter().lat]);
@@ -60,7 +69,7 @@ function init_my_position() {
             showButton: false,        //显示定位按钮，默认：true
             // buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
             // buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-            showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
+            showMarker: false,        //定位成功后在定位到的位置显示点标记，默认：true
             showCircle: false,        //定位成功后用圆圈表示定位精度范围，默认：true
             panToLocation: false,     //定位成功后将定位到的位置作为地图中心点，默认：true
             zoomToAccuracy: false      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
@@ -72,14 +81,12 @@ function init_my_position() {
     });
     //解析定位结果
     function onComplete(data) {
-        getting_location = false;
-        hide_loading_dialog();
         console.log("position:" + "(" + data.position.getLng() + "," + data.position.getLat() + ")");
         my_position = [data.position.getLng(), data.position.getLat()];
-        map_move_to(my_position);
-        draw_circle(my_position);
-        draw_center_marker(my_position);
-        search_bus_station(my_position, data.addressComponent.city);
+        sessionStorage.setItem('my_position', my_position);
+        sessionStorage.setItem('city', data.addressComponent.city);
+        hide_loading_dialog();
+        onGetCurrentPosition(my_position, data.addressComponent.city);
     }
 
     //解析定位错误信息
@@ -94,6 +101,15 @@ function init_my_position() {
         );
     }
 }
+function onGetCurrentPosition(lngLat, city) {
+    getting_location = false;
+    map_move_to(lngLat);
+    draw_circle(lngLat);
+    draw_my_position_marker(lngLat);
+    draw_center_marker(lngLat);
+    search_bus_station(lngLat, city);
+}
+
 function show_loading_dialog() {
     document.getElementById('loading_dialog').style.visibility = "visible";
     document.getElementById('loading_bg').style.visibility = "visible";
@@ -155,12 +171,28 @@ function draw_center_marker(lngLat) {
     center_marker = new AMap.Marker({
         map: map,
         position: [lngLat[0], lngLat[1]],
-        content: '<div class=\"marker\"></div>',
+        content: '<div class=\"marker\"></div>'
     });
     if (lngLat[0] == my_position[0] && lngLat[1] == my_position[1]) {
         center_marker.setOffset(new AMap.Pixel(-16, -16));
     }
 }
+var my_position_marker;
+function draw_my_position_marker(lngLat) {
+    if (null != my_position_marker) {
+        my_position_marker.setMap(null);
+    }
+    my_position_marker = new AMap.Marker({
+        map: map,
+        position: [lngLat[0], lngLat[1]],
+        icon: new AMap.Icon({
+            size: new AMap.Size(36, 36),  //图标大小
+            image: "http://webapi.amap.com/theme/v1.3/markers/n/loc.png",
+            imageOffset: new AMap.Pixel(-3, 14)
+        })
+    });
+}
+
 var visibility = true;
 function toggle_markers_visibility() {
     visibility = !visibility;
@@ -212,4 +244,7 @@ function on_get_stations() {
             }
         }
     }
+}
+function go_to_search() {
+    window.location.href = 'search.html';
 }

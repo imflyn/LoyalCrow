@@ -59,6 +59,7 @@ body, html, #container {
     height: 100%;
     filter: Alpha(Opacity=10, Style=0);
     opacity: 0.50;
+    visibility: hidden;
 }
 
 .loading_panel {
@@ -69,16 +70,14 @@ body, html, #container {
     right: 0;
     left: 0;
     opacity: 1;
-    padding-top: 10px;
-    padding-left: 16px;
-    padding-right: 16px;
     width: 220px;
     height: 80px;
     float: left;
+    visibility: hidden;
 }
 
 #loading_progress {
-    margin-top: 16px;
+    border-color: #4db6ac;
 }
 
 .marker {
