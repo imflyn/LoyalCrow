@@ -27,3 +27,22 @@
     height: 24px;
     visibility: hidden;
 }
+
+.content {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.margin_left_16 {
+    margin-left: 16px;
+}
+
+.margin_top_bottom_16 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#label_search_history {
+    font-size: 14px;
+}
