@@ -1,0 +1,29 @@
+#btn_search {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    width: 56px;
+    height: 100%;
+}
+
+#img_search_white {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 16px;
+    width: 24px;
+    height: 24px;
+}
+
+#img_search_black {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 16px;
+    width: 24px;
+    height: 24px;
+    visibility: hidden;
+}

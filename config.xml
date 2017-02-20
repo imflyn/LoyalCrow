@@ -10,6 +10,10 @@
     <allow-intent href="sms:*"/>
     <allow-intent href="mailto:*"/>
     <allow-intent href="geo:*"/>
+    <preference name="StatusBarOverlaysWebView" value="true"/>
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" onload="true"/>
+    </feature>
     <!--  启动页面是否允许旋转（默认为：true）-->
     <!--<preference name="ShowSplashScreenSpinner" value="false"/>-->
     <!--SplashMaintainAspectRatio：选填项，默认为false。当设置为true时，则不会拉伸图片来填充屏幕，会以图片原始比例显示图片。-->
