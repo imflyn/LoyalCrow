@@ -23,12 +23,12 @@ function onSearchBlured() {
     document.getElementById('btn_search_text_clear').style.visibility = 'hidden'
 }
 function load_history() {
-    history_list = localStorage.getItem("search_history");
-    if (history_list == null) {
-        history_list = [];
+    browse_list = localStorage.getItem("browse_history");
+    if (browse_list == null) {
+        browse_list = [];
     }
     else {
-        history_list = JSON.parse(history_list);
+        browse_list = JSON.parse(browse_list);
     }
 }
 function search() {

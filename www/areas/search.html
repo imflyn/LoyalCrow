@@ -16,6 +16,8 @@
 
     <script type="text/javascript" src="../js/core/constants.js"></script>
     <script type="text/javascript" src="../js/core/history_model.js"></script>
+
+
     <link rel="stylesheet" type="text/css" href="../css/ui/search.css">
     <link rel="stylesheet" type="text/css" href="../css/app.css">
 </head>
@@ -35,8 +37,13 @@
 </nav>
 <div class="content">
     <div class="margin_left_16 margin_top_bottom_16">
-        <label id="label_search_history">历史搜索</label>
+        <label id="label_browse_history" class="text_color_secondary">浏览历史</label>
     </div>
+    <ul class="collection browse_list_collection">
+        <li class="waves-effect collection-item browse_list_collection_item">
+            <img src="../img/icon_app.png" alt="" class="circle collection_icon"><span class="title">Title</span>
+        </li>
+    </ul>
 </div>
 </body>
 <script src="../js/ui/search.js"></script>

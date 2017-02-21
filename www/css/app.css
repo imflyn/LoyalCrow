@@ -33,3 +33,33 @@
 .theme_border_color.dark {
     border-color: #009688 !important;
 }
+
+.bg_grey {
+    background-color: #eeeeee
+}
+
+.text_color_primary {
+    color: #212121
+}
+
+.text_color_secondary {
+    color: #727272
+}
+
+.margin_left_16 {
+    margin-left: 16px;
+}
+
+.margin_top_bottom_16 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.icon_align_center {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
