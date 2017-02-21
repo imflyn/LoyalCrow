@@ -1,6 +1,7 @@
 window.addEventListener('load', function () {
     document.addEventListener('deviceready', onDeviceReady, false);
 });
+document.getElementById('input_search').style.width = (screen.width - 70) + "px";
 load_history();
 //=============================================================================================================================================
 //=============================================================================================================================================
@@ -15,12 +16,12 @@ function onBackKeyDown() {
 function onSearchFocused() {
     document.getElementById('img_search_black').style.visibility = "visible";
     document.getElementById('img_search_white').style.visibility = "hidden";
-    document.getElementById('btn_search_text_clear').style.visibility = 'visible'
+    document.getElementById('btn_search_text_clear').style.visibility = 'visible';
 }
 function onSearchBlured() {
     document.getElementById('img_search_black').style.visibility = "hidden";
     document.getElementById('img_search_white').style.visibility = "visible";
-    document.getElementById('btn_search_text_clear').style.visibility = 'hidden'
+    document.getElementById('btn_search_text_clear').style.visibility = 'hidden';
 }
 function load_history() {
     browse_list = localStorage.getItem("browse_history");
@@ -33,7 +34,6 @@ function load_history() {
 }
 function search() {
     var text = document.getElementById('input_search').value;
-
 }
 function search_text_clear() {
     document.getElementById('btn_search_text_clear').style.visibility = 'hidden'

@@ -24,14 +24,14 @@
 <body>
 <nav style="height: 56px">
     <div class="input-field theme_color theme_bg_color">
-        <button id="btn_search" class="btn-flat" onclick="onBackKeyDown()">
-            <img src="../img/ic_back_white.svg" alt="ic_back" id="img_search_white">
-            <img src="../img/ic_back_black.svg" alt="ic_back" id="img_search_black">
-        </button>
         <input id="input_search" type="search" placeholder="查公交，找线路" required onfocus="onSearchFocused()"
                onblur="onSearchBlured()">
         <button id="btn_search_text_clear" class="material-icons btn-flat">
             <i class="material-icons icon_align_center" onclick="search_text_clear()">close</i>
+        </button>
+        <button id="btn_search" class="btn-flat" onclick="onBackKeyDown()">
+            <img src="../img/ic_back_white.svg" alt="ic_back" id="img_search_white">
+            <img src="../img/ic_back_black.svg" alt="ic_back" id="img_search_black">
         </button>
     </div>
 </nav>
@@ -41,7 +41,16 @@
     </div>
     <ul class="collection browse_list_collection">
         <li class="waves-effect collection-item browse_list_collection_item">
-            <img src="../img/icon_app.png" alt="" class="circle collection_icon"><span class="title">Title</span>
+            <img src="../img/ic_place.png" alt="" class="circle collection_icon">
+            <span class="text_color_primary">国际科技园</span>
+        </li>
+        <li class="waves-effect collection-item browse_list_collection_item">
+            <img src="../img/ic_bus.png" alt="" class="circle collection_icon">
+            <span class="text_color_primary">2路</span>
+        </li>
+        <li class="waves-effect collection-item browse_list_collection_item">
+            <img src="../img/ic_station.png" alt="" class="circle collection_icon">
+            <span class="text_color_primary">通苑路(公交站)</span>
         </li>
     </ul>
 </div>

@@ -7,6 +7,10 @@
     height: 100%;
 }
 
+#input_search {
+    padding-left: 70px;
+}
+
 #img_search_white {
     position: absolute;
     margin: auto;
@@ -68,8 +72,8 @@
     margin: auto;
     top: 0;
     bottom: 0;
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
 }
 
 .browse_list_collection span {
@@ -77,5 +81,6 @@
     margin: auto;
     top: 0;
     bottom: 0;
-    left: 86px;
+    left: 70px;
+    font-size: 16px;
 }
