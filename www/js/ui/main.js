@@ -1,25 +1,3 @@
-function isPC() {
-    var userAgentInfo = navigator.userAgent;
-    var Agents = ["Android", "iPhone",
-        "SymbianOS", "Windows Phone",
-        "iPad", "iPod"];
-    var flag = true;
-    for (var v = 0; v < Agents.length; v++) {
-        if (userAgentInfo.indexOf(Agents[v]) > 0) {
-            flag = false;
-            break;
-        }
-    }
-    return flag;
-}
-var search_bar = document.getElementById('search_bar');
-if (isPC()) {
-    search_bar.style.width = "360px";
-    search_bar.style.right = "12px";
-}
-else {
-    search_bar.style.width = screen.width + "px";
-}
 window.addEventListener('load', function () {
     document.addEventListener('deviceready', onDeviceReady, false);
 });
@@ -42,6 +20,7 @@ map.on('complete', function () {
     }
 });
 map.on('moveend', function () {
+    document.getElementsByClassName("amap-toolbar")[0].style.visibility = "hidden";
     draw_center_marker([map.getCenter().lng, map.getCenter().lat]);
     search_bus_station([map.getCenter().lng, map.getCenter().lat]);
 });
@@ -51,7 +30,7 @@ function onDeviceReady() {
     //清除之前的页面记录
     navigator.app.clearHistory();
     StatusBar.show();
-    StatusBar.styleDefault();
+    StatusBar.backgroundColorByHexString(theme_color_accent);
 }
 var geo_location = null;
 var getting_location = false;
@@ -137,7 +116,7 @@ function draw_circle(lngLat) {
     var circle = new AMap.Circle({
         center: new AMap.LngLat(lngLat[0], lngLat[1]),// 圆心位置
         radius: 500, //半径
-        strokeColor: "#4db6ac", //线颜色
+        strokeColor: theme_color_accent, //线颜色
         strokeOpacity: 0.7, //线透明度
         strokeWeight: 0.7, //线粗细度
         fillOpacity: 0,//填充透明度

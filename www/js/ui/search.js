@@ -6,7 +6,7 @@ load_history();
 //=============================================================================================================================================
 function onDeviceReady() {
     document.addEventListener('backbutton', onBackKeyDown, false);
-    StatusBar.backgroundColorByHexString("#4db6ac");
+    StatusBar.backgroundColorByHexString(theme_color_accent);
 }
 function onBackKeyDown() {
     history.go(-1);

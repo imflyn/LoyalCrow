@@ -1,1 +1,35 @@
-/*主题色 #14828c*/
+.theme_bg_color {
+    background-color: #26a69a !important;
+}
+
+.theme_color {
+    color: #26a69a !important;
+}
+
+.theme_border_color {
+    border-color: #26a69a !important;
+}
+
+.theme_bg_color.accent {
+    background-color: #4db6ac !important;
+}
+
+.theme_color.accent {
+    color: #4db6ac !important;
+}
+
+.theme_border_color.accent {
+    border-color: #4db6ac !important;
+}
+
+.theme_bg_color.dark {
+    background-color: #009688 !important;
+}
+
+.theme_color.dark {
+    color: #009688 !important;
+}
+
+.theme_border_color.dark {
+    border-color: #009688 !important;
+}

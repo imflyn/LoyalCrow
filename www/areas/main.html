@@ -21,14 +21,17 @@
     <script src="http://webapi.amap.com/maps?v=1.3&key=b89262d7841f1c7911f73f97ea6815cb"></script>
     <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
 
+
+    <script type="text/javascript" src="../js/core/constants.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/ui/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/app.css">
 </head>
 <body>
 <div id="container"></div>
-<div class="col s12 m12" id="search_bar">
-    <div class="card-panel white search_bar_panel ">
-        <label class="waves-effect " id="search_label" onclick="go_to_search()">查公交、找线路</label>
-        <button class="material-icons grey-text" id="search_button">search</button>
+<div class="waves-effect waves-ripple  z-depth-1 theme_bg_color" id="search_bar">
+    <div class="card-panel white search_bar_panel  ">
+        <label id="search_label" onclick="go_to_search()">查公交、找线路</label>
+        <button class="material-icons grey-text " id="search_button">search</button>
     </div>
 </div>
 
@@ -43,7 +46,7 @@
 </div>
 <div class="card-panel white loading_panel valign-wrapper" id="loading_bg">
     <div class="preloader-wrapper small active">
-        <div class="spinner-layer spinner-green-only" id="loading_progress">
+        <div class="spinner-layer spinner-green-only theme_border_color" id="loading_progress">
             <div class="circle-clipper left">
                 <div class="circle"></div>
             </div>
