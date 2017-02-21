@@ -1,3 +1,12 @@
+.icon_align_center {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 #btn_search {
     position: absolute;
     margin: auto;
@@ -45,4 +54,15 @@
 
 #label_search_history {
     font-size: 14px;
+}
+
+#btn_search_text_clear {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 56px;
+    height: 100%;
+    visibility: hidden;
 }
