@@ -179,46 +179,23 @@ function toggle_markers_visibility() {
         }
     }
 }
-var request = false;
-function createXMLRequest() {
-    try {
-        request = new ActivexObject("Msxml2.XMLHTTP");
-    }
-    catch (e1) {
-        try {
-            request = new ActivexObject("Microsoft.XMLHTTP");
-        }
-        catch (e2) {
-            request = false;
-        }
-    }
-    if (!request && typeof XMLHttpRequest != 'undefined') {
-        request = new XMLHttpRequest();
-    }
-}
 function search_bus_station(lngLat, city) {
-    url = "http://restapi.amap.com/v3/place/around?key=b72c9571b039d067f60280808d545520&location="
+    var url = "http://restapi.amap.com/v3/place/around?key=b72c9571b039d067f60280808d545520&location="
         + lngLat[0] + "," + lngLat[1] + "&output=json&radius=500&types=150700&city=" + city + "&extensions=all&offset=100";
-    //实现对时间的调用
-    createXMLRequest();
-    //通过get方式发送request请求，true表示是异步请求
-    request.open("GET", url, true);
-    request.onreadystatechange = on_get_stations;
-    request.send();
-}
-function on_get_stations() {
-    if (request.readyState == 4 && request.status == 200) {
-        map.remove(marker_list);
-        var nearby_stations = JSON.parse(request.responseText);
-        if (nearby_stations.status == "1") {
-            marker_list = [];
-            visibility = true;
-            for (var i = 0; i < nearby_stations.pois.length; i++) {
-                var location = nearby_stations.pois[i].location.split(',');
-                draw_marker([location[0], location[1]], nearby_stations.pois[i].name);
+    var request = sendGetRequest(url, function () {
+        if (request.readyState == 4 && request.status == 200) {
+            map.remove(marker_list);
+            var nearby_stations = JSON.parse(request.responseText);
+            if (nearby_stations.status == "1") {
+                marker_list = [];
+                visibility = true;
+                for (var i = 0; i < nearby_stations.pois.length; i++) {
+                    var location = nearby_stations.pois[i].location.split(',');
+                    draw_marker([location[0], location[1]], nearby_stations.pois[i].name);
+                }
             }
         }
-    }
+    });
 }
 function go_to_search() {
     window.location.href = 'search.html';

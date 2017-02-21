@@ -84,3 +84,11 @@
     left: 70px;
     font-size: 16px;
 }
+
+#browse_history {
+    visibility: visible;
+}
+
+#search_result {
+    visibility: hidden;
+}

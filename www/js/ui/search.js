@@ -34,6 +34,14 @@ function load_history() {
 }
 function search() {
     var text = document.getElementById('input_search').value;
+    var city = sessionStorage.getItem('city');
+    var url = "http://restapi.amap.com/v3/assistant/inputtips?key=b72c9571b039d067f60280808d545520&keywords=" +
+        text + "&city=" + city + "&citylimit=true&datatype=all&output=JSON";
+    var request = sendGetRequest(url, function () {
+        if (request.readyState == 4 && request.status == 200) {
+
+        }
+    });
 }
 function search_text_clear() {
     document.getElementById('btn_search_text_clear').style.visibility = 'hidden'
