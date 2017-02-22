@@ -9,14 +9,14 @@ var map = new AMap.Map('container', {
 });
 map.on('complete', function () {
     my_position = sessionStorage.getItem('my_position');
-    var city = sessionStorage.getItem('city');
+    var citycode = sessionStorage.getItem('citycode');
     if (my_position == null) {
         show_loading_dialog();
         init_my_position();
     }
     else {
         my_position = my_position.split(',');
-        onGetCurrentPosition(my_position, city);
+        onGetCurrentPosition(my_position, citycode);
     }
 });
 map.on('moveend', function () {
@@ -61,9 +61,9 @@ function init_my_position() {
         console.log("position:" + "(" + data.position.getLng() + "," + data.position.getLat() + ")");
         my_position = [data.position.getLng(), data.position.getLat()];
         sessionStorage.setItem('my_position', my_position);
-        sessionStorage.setItem('city', data.addressComponent.city);
+        sessionStorage.setItem('citycode', data.addressComponent.citycode);
         hide_loading_dialog();
-        onGetCurrentPosition(my_position, data.addressComponent.city);
+        onGetCurrentPosition(my_position, data.addressComponent.citycode);
     }
 
     //解析定位错误信息
@@ -78,13 +78,13 @@ function init_my_position() {
         );
     }
 }
-function onGetCurrentPosition(lngLat, city) {
+function onGetCurrentPosition(lngLat, citycode) {
     getting_location = false;
     map_move_to(lngLat);
     draw_circle(lngLat);
     draw_my_position_marker(lngLat);
     draw_center_marker(lngLat);
-    search_bus_station(lngLat, city);
+    search_bus_station(lngLat, citycode);
 }
 function show_loading_dialog() {
     document.getElementById('loading_dialog').style.visibility = "visible";
@@ -179,9 +179,9 @@ function toggle_markers_visibility() {
         }
     }
 }
-function search_bus_station(lngLat, city) {
+function search_bus_station(lngLat, citycode) {
     var url = "http://restapi.amap.com/v3/place/around?key=b72c9571b039d067f60280808d545520&location="
-        + lngLat[0] + "," + lngLat[1] + "&output=json&radius=500&types=150700&city=" + city + "&extensions=all&offset=100";
+        + lngLat[0] + "," + lngLat[1] + "&output=json&radius=500&types=150700&city=" + citycode + "&extensions=all&offset=100";
     var request = sendGetRequest(url, function () {
         if (request.readyState == 4 && request.status == 200) {
             map.remove(marker_list);

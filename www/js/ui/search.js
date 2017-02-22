@@ -1,17 +1,28 @@
 window.addEventListener('load', function () {
     document.addEventListener('deviceready', onDeviceReady, false);
 });
-document.getElementById('input_search').style.width = (screen.width - 70) + "px";
+document.getElementById('input_search').style.width = (screen.width - 88) + "px";
 load_history();
 //=============================================================================================================================================
 //=============================================================================================================================================
 function onDeviceReady() {
     document.addEventListener('backbutton', onBackKeyDown, false);
+    document.addEventListener('searchbutton', onSearchButtonDown, false);
     StatusBar.backgroundColorByHexString(theme_color_accent);
 }
 function onBackKeyDown() {
     history.go(-1);
     navigator.app.backHistory();
+}
+function onSearchButtonDown() {
+    search();
+}
+function onEnterKeyDown(event) {
+    e = event ? event : (window.event ? window.event : null);
+    if (e.keyCode == 13) {
+        search();
+        return false;
+    }
 }
 function onSearchFocused() {
     document.getElementById('img_search_black').style.visibility = "visible";
@@ -32,17 +43,60 @@ function load_history() {
         browse_list = JSON.parse(browse_list);
     }
 }
+function getSearchSuggestion() {
+}
+var myjson = "[{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"}]";
 function search() {
     var text = document.getElementById('input_search').value;
-    var city = sessionStorage.getItem('city');
-    var url = "http://restapi.amap.com/v3/assistant/inputtips?key=b72c9571b039d067f60280808d545520&keywords=" +
-        text + "&city=" + city + "&citylimit=true&datatype=all&output=JSON";
-    var request = sendGetRequest(url, function () {
-        if (request.readyState == 4 && request.status == 200) {
+    if (text.length == 0) {
+        document.getElementById('search_result').style.visibility = 'hidden';
+        document.getElementById('browse_history').style.visibility = 'visible';
+        return;
+    }
 
+    document.getElementById('search_result').style.visibility = 'visible';
+    document.getElementById('browse_history').style.visibility = 'hidden';
+
+    var url = "http://127.0.0.1:5000/search?keyword=" + text;
+    var request = sendGetRequest(url, function () {
+            if (request.readyState == 4 && request.status == 200) {
+                // var data = JSON.parse(request.responseText);
+                var data = JSON.parse(data);
+            } else {
+                var result_list = JSON.parse(myjson);
+                var parent = document.getElementById('ul_search_result');
+                parent.innerHTML = "";
+
+                for (var i = 0; i < result_list.length; i++) {
+                    var li = document.createElement("li");
+                    li.setAttribute("class", "waves-effect collection-item browse_list_collection_item");
+
+                    var img = document.createElement("img");
+                    if (result_list[i].type == "0001") {
+                        img.setAttribute("src", "../img/ic_station.png");
+                    } else if (result_list[i].type == "0002") {
+                        img.setAttribute("src", "../img/ic_bus.png");
+                    }
+                    img.setAttribute("alt", "");
+                    img.setAttribute("class", "circle collection_icon");
+
+                    var span = document.createElement("span");
+                    span.setAttribute("class", "ext_color_primary");
+                    if (result_list[i].type == "0001") {
+                        span.innerHTML = result_list[i].name + "(公交站)";
+                    } else if (result_list[i].type == "0002") {
+                        span.innerHTML = result_list[i].name + "路";
+                    }
+
+                    li.appendChild(img);
+                    li.appendChild(span);
+                    parent.appendChild(li);
+                }
+            }
         }
-    });
+    );
 }
 function search_text_clear() {
     document.getElementById('btn_search_text_clear').style.visibility = 'hidden'
+    document.getElementById('input_search').value = '';
 }

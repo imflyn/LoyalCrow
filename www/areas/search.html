@@ -15,6 +15,7 @@
     <script type="text/javascript" src="../js/materialize.min.js"></script>
 
     <script type="text/javascript" src="../js/core/constants.js"></script>
+    <script type="text/javascript" src="../js/core/utils.js"></script>
     <script type="text/javascript" src="../js/core/history_model.js"></script>
 
 
@@ -24,14 +25,15 @@
 <body>
 <nav style="height: 56px">
     <div class="input-field theme_color theme_bg_color">
-        <input id="input_search" type="search" placeholder="查公交，找线路" required onfocus="onSearchFocused()"
+        <input id="input_search" class="input_search" type="search" placeholder="查公交，找线路" required
+               onfocus="onSearchFocused()"
                onblur="onSearchBlured()" oninput="search()">
-        <button id="btn_search_text_clear" class="material-icons btn-flat">
-            <i class="material-icons icon_align_center" onclick="search_text_clear()">close</i>
-        </button>
         <button id="btn_search" class="btn-flat" onclick="onBackKeyDown()">
             <img src="../img/ic_back_white.svg" alt="ic_back" id="img_search_white">
             <img src="../img/ic_back_black.svg" alt="ic_back" id="img_search_black">
+        </button>
+        <button id="btn_search_text_clear" class="material-icons btn-flat" onclick="search_text_clear()">
+            <img src="../img/ic_clear_black.svg" alt="ic_clear" id="img_clear">
         </button>
     </div>
 </nav>
@@ -48,13 +50,9 @@
 </div>
 <div class="content" id="search_result">
     <div class="margin_left_16 margin_top_bottom_16">
-        <label id="label_search_history" class="text_color_secondary">浏览历史</label>
+        <label id="label_search_history" class="text_color_secondary">搜索结果</label>
     </div>
-    <ul class="collection browse_list_collection">
-        <li class="waves-effect collection-item browse_list_collection_item">
-            <img src="../img/ic_place.png" alt="" class="circle collection_icon">
-            <span class="text_color_primary">国际科技园</span>
-        </li>
+    <ul class="collection browse_list_collection" id="ul_search_result">
     </ul>
 </div>
 </body>
