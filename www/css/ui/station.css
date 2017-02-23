@@ -1,0 +1,26 @@
+#btn_back {
+    width: 56px;
+    height: 56px;
+}
+
+#img_back_white {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 16px;
+    width: 24px;
+    height: 24px;
+}
+
+#station_title {
+    position: relative;
+    top: 2px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    width: 100%;
+    font-size: 1.2rem;
+    margin-left: 24px;
+}

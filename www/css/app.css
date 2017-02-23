@@ -85,3 +85,8 @@
     float: left;
     visibility: hidden;
 }
+
+.title {
+    height: 56px;
+    width: 100%;
+}
