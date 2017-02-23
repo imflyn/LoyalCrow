@@ -32,6 +32,7 @@ function onSearchFocused() {
 function onSearchBlured() {
     document.getElementById('img_search_black').style.visibility = "hidden";
     document.getElementById('img_search_white').style.visibility = "visible";
+    document.getElementById('img_clear').style.visibility = "hidden";
 }
 function load_history() {
     browse_list = localStorage.getItem("browse_history");
@@ -48,11 +49,12 @@ var myjson = "[{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\
 function search() {
     var text = document.getElementById('input_search').value;
     if (text.length == 0) {
+        document.getElementById('img_clear').style.visibility = "hidden";
         document.getElementById('search_result').style.visibility = 'hidden';
         document.getElementById('browse_history').style.visibility = 'visible';
         return;
     }
-
+    document.getElementById('img_clear').style.visibility = "visible";
     document.getElementById('search_result').style.visibility = 'visible';
     document.getElementById('browse_history').style.visibility = 'hidden';
 

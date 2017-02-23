@@ -39,22 +39,26 @@
     </div>
 </nav>
 <div class="content" id="browse_history">
-    <div class="margin_left_16 margin_top_bottom_16">
+    <div style="height: 48px">
         <label id="label_browse_history" class="text_color_secondary">浏览历史</label>
     </div>
-    <ul class="collection browse_list_collection">
-        <li class="waves-effect collection-item browse_list_collection_item">
-            <img src="../img/ic_place.png" alt="" class="circle collection_icon">
-            <span class="text_color_primary">国际科技园</span>
-        </li>
-    </ul>
+    <div class="scrollable_list">
+        <ul class="collection browse_list_collection">
+            <li class="waves-effect collection-item browse_list_collection_item">
+                <img src="../img/ic_place.png" class="circle collection_icon">
+                <span class="text_color_primary">国际科技园</span>
+            </li>
+        </ul>
+    </div>
 </div>
 <div class="content" id="search_result">
-    <div class="margin_left_16 margin_top_bottom_16">
+    <div style="height: 48px">
         <label id="label_search_history" class="text_color_secondary">搜索结果</label>
     </div>
-    <ul class="collection browse_list_collection" id="ul_search_result">
-    </ul>
+    <div class="scrollable_list">
+        <ul class="collection browse_list_collection" id="ul_search_result">
+        </ul>
+    </div>
 </div>
 </body>
 <script src="../js/ui/search.js"></script>

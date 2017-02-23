@@ -69,10 +69,20 @@
 }
 
 #label_browse_history {
+    position: absolute;
+    margin: auto;
+    top: 16px;
+    bottom: 0;
+    left: 16px;
     font-size: 16px;
 }
 
 #label_search_history {
+    position: absolute;
+    margin: auto;
+    top: 16px;
+    bottom: 0;
+    left: 16px;
     font-size: 16px;
 }
 
@@ -114,5 +124,15 @@
 
 #search_result {
     visibility: hidden;
-    overflow-y: auto;
+}
+
+.scrollable_list {
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 104px;
+    scrollbar-base-color: #26a69a;
+    scrollbar-face-color: #4db6ac;
+    scrollbar-highlight-color: #FFFFFF;
+    scrollbar-shadow-color: #4db6ac;
 }
