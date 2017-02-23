@@ -57,12 +57,39 @@ function search() {
     document.getElementById('browse_history').style.visibility = 'hidden';
 
     show_loading_dialog();
-    var url = "http://127.0.0.1:5000/search?keyword=" + text;
+    var url = "http://192.168.1.102:5000/search?keyword=" + text;
     var request = sendGetRequest(url, function () {
             hide_loading_dialog();
             if (request.readyState == 4 && request.status == 200) {
-                // var data = JSON.parse(request.responseText);
-                var data = JSON.parse(data);
+                var result_list = JSON.parse(request.responseText);
+                var parent = document.getElementById('ul_search_result');
+                parent.innerHTML = "";
+
+                for (var i = 0; i < result_list.length; i++) {
+                    var li = document.createElement("li");
+                    li.setAttribute("class", "waves-effect collection-item browse_list_collection_item");
+
+                    var img = document.createElement("img");
+                    if (result_list[i].type == "0001") {
+                        img.setAttribute("src", "../img/ic_station.png");
+                    } else if (result_list[i].type == "0002") {
+                        img.setAttribute("src", "../img/ic_bus.png");
+                    }
+                    img.setAttribute("alt", "");
+                    img.setAttribute("class", "circle collection_icon");
+
+                    var span = document.createElement("span");
+                    span.setAttribute("class", "ext_color_primary");
+                    if (result_list[i].type == "0001") {
+                        span.innerHTML = result_list[i].name + "(公交站)";
+                    } else if (result_list[i].type == "0002") {
+                        span.innerHTML = result_list[i].name + "路";
+                    }
+
+                    li.appendChild(img);
+                    li.appendChild(span);
+                    parent.appendChild(li);
+                }
             } else {
                 var result_list = JSON.parse(myjson);
                 var parent = document.getElementById('ul_search_result');

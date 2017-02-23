@@ -127,12 +127,34 @@
 }
 
 .scrollable_list {
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 100%;
     height: 100%;
     padding-bottom: 104px;
-    scrollbar-base-color: #26a69a;
-    scrollbar-face-color: #4db6ac;
-    scrollbar-highlight-color: #FFFFFF;
-    scrollbar-shadow-color: #4db6ac;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-track-color: #ffffff;
 }
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 10px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #26a69a;
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
