@@ -86,14 +86,7 @@ function onGetCurrentPosition(lngLat, citycode) {
     draw_center_marker(lngLat);
     search_bus_station(lngLat, citycode);
 }
-function show_loading_dialog() {
-    document.getElementById('loading_dialog').style.visibility = "visible";
-    document.getElementById('loading_bg').style.visibility = "visible";
-}
-function hide_loading_dialog() {
-    document.getElementById('loading_dialog').style.visibility = "hidden";
-    document.getElementById('loading_bg').style.visibility = "hidden";
-}
+
 //移动地图
 function map_move_to(lngLat) {
     map.setZoom(15);

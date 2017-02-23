@@ -19,3 +19,11 @@ function sendGetRequest(url, callback) {
     request.send();
     return request;
 }
+function show_loading_dialog() {
+    document.getElementById('loading_dialog').style.visibility = "visible";
+    document.getElementById('loading_bg').style.visibility = "visible";
+}
+function hide_loading_dialog() {
+    document.getElementById('loading_dialog').style.visibility = "hidden";
+    document.getElementById('loading_bg').style.visibility = "hidden";
+}

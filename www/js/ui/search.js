@@ -43,8 +43,6 @@ function load_history() {
         browse_list = JSON.parse(browse_list);
     }
 }
-function getSearchSuggestion() {
-}
 var myjson = "[{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"}]";
 function search() {
     var text = document.getElementById('input_search').value;
@@ -58,8 +56,10 @@ function search() {
     document.getElementById('search_result').style.visibility = 'visible';
     document.getElementById('browse_history').style.visibility = 'hidden';
 
+    show_loading_dialog();
     var url = "http://127.0.0.1:5000/search?keyword=" + text;
     var request = sendGetRequest(url, function () {
+            hide_loading_dialog();
             if (request.readyState == 4 && request.status == 200) {
                 // var data = JSON.parse(request.responseText);
                 var data = JSON.parse(data);
