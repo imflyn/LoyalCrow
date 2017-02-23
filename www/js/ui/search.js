@@ -27,12 +27,11 @@ function onEnterKeyDown(event) {
 function onSearchFocused() {
     document.getElementById('img_search_black').style.visibility = "visible";
     document.getElementById('img_search_white').style.visibility = "hidden";
-    document.getElementById('btn_search_text_clear').style.visibility = 'visible';
+    document.getElementById('img_clear').style.visibility = "visible";
 }
 function onSearchBlured() {
     document.getElementById('img_search_black').style.visibility = "hidden";
     document.getElementById('img_search_white').style.visibility = "visible";
-    document.getElementById('btn_search_text_clear').style.visibility = 'hidden';
 }
 function load_history() {
     browse_list = localStorage.getItem("browse_history");
@@ -96,7 +95,7 @@ function search() {
         }
     );
 }
-function search_text_clear() {
-    document.getElementById('btn_search_text_clear').style.visibility = 'hidden'
-    document.getElementById('input_search').value = '';
+function onTextClearClick() {
+    document.getElementById('input_search').value = "";
+    document.getElementById('img_clear').style.visibility = "hidden";
 }

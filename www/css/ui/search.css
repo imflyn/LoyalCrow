@@ -54,12 +54,18 @@
     right: 0;
     width: 56px;
     height: 100%;
-    visibility: hidden;
 }
 
 #img_clear {
-    width: 100%;
-    height: 100%;
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    visibility: hidden;
 }
 
 #label_browse_history {
