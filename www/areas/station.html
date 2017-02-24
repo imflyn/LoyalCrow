@@ -22,13 +22,21 @@
     <link rel="stylesheet" type="text/css" href="../css/app.css">
 </head>
 <body>
-<div class="z-depth-1 theme_bg_color  title">
-    <button id="btn_back" class="waves-effect waves-light transparent btn-flat" onclick="onBackKeyDown()">
-        <img src="../img/ic_back_white.svg" id="img_back_white">
-    </button>
-    <span class="white-text" id="station_title"></span>
+<div class="content">
+    <header class="z-depth-1 theme_bg_color  title">
+        <button id="btn_back" class="waves-effect waves-light transparent btn-flat" onclick="onBackKeyDown()">
+            <img src="../img/ic_back_white.svg" id="img_back_white">
+        </button>
+        <span class="white-text" id="station_title"></span>
+    </header>
+    <div class='main bg_grey'>
+        <div class='main-wrap'>
+            <ul class='list-group'>
+                <li class='list-group-item' ng-repeat="d in data" ng-bind="d"></li>
+            </ul>
+        </div>
+    </div>
 </div>
-
 
 </body>
 <script src="../js/ui/station.js"></script>

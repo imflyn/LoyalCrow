@@ -20,12 +20,14 @@ function onSearchButtonDown() {
 function onSearchFocused() {
     document.getElementById('img_search_black').style.visibility = "visible";
     document.getElementById('img_search_white').style.visibility = "hidden";
-    document.getElementById('img_clear').style.visibility = "visible";
+    document.getElementById('img_clear_black').style.visibility = "visible";
+    document.getElementById('img_clear_white').style.visibility = "hidden";
 }
 function onSearchBlured() {
     document.getElementById('img_search_black').style.visibility = "hidden";
     document.getElementById('img_search_white').style.visibility = "visible";
-    document.getElementById('img_clear').style.visibility = "hidden";
+    document.getElementById('img_clear_black').style.visibility = "hidden";
+    document.getElementById('img_clear_white').style.visibility = "hidden";
 }
 function load_data() {
     var text = document.getElementById('input_search').value;
@@ -35,7 +37,8 @@ function load_data() {
     }
     var storage_history_json = sessionStorage.getItem('search_result_list');
     if (text.length > 0 && storage_history_json != null && storage_history_json.length != 0) {
-        document.getElementById('img_clear').style.visibility = "visible";
+        document.getElementById('img_clear_black').style.visibility = "hidden";
+        document.getElementById('img_clear_white').style.visibility = "visible";
         document.getElementById('search_result').style.visibility = 'visible';
         document.getElementById('browse_history').style.visibility = 'hidden';
         handleSearchData(storage_history_json)
@@ -47,14 +50,16 @@ function load_data() {
 function search() {
     var text = document.getElementById('input_search').value;
     if (text.length == 0) {
-        document.getElementById('img_clear').style.visibility = "hidden";
+        document.getElementById('img_clear_black').style.visibility = "hidden";
+        document.getElementById('img_clear_white').style.visibility = "hidden";
         document.getElementById('search_result').style.visibility = 'hidden';
         document.getElementById('browse_history').style.visibility = 'visible';
         sessionStorage.setItem('search_result_list', '');
         handleHistoryData(JSON.parse(localStorage.getItem("browse_history")));
         return;
     }
-    document.getElementById('img_clear').style.visibility = "visible";
+    document.getElementById('img_clear_black').style.visibility = "visible";
+    document.getElementById('img_clear_white').style.visibility = "hidden";
     document.getElementById('search_result').style.visibility = 'visible';
     document.getElementById('browse_history').style.visibility = 'hidden';
     show_loading_dialog();
@@ -149,7 +154,8 @@ function handleHistoryData(result_list) {
 }
 function onTextClearClick() {
     document.getElementById('input_search').value = "";
-    document.getElementById('img_clear').style.visibility = "hidden";
+    document.getElementById('img_clear_black').style.visibility = "hidden";
+    document.getElementById('img_clear_white').style.visibility = "hidden";
     search();
 }
 function turnToStation(station) {
