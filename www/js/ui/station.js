@@ -1,7 +1,7 @@
 window.addEventListener('load', function () {
     document.addEventListener('deviceready', onDeviceReady, false);
 });
-document.getElementById('station_title').innerHTML = get_url_params()['station'];
+document.getElementById('station_title').innerHTML = get_url_params()['station'] + '路(公交车)';
 //=============================================================================================================================================
 //=============================================================================================================================================
 function onDeviceReady() {
@@ -11,5 +11,4 @@ function onDeviceReady() {
 }
 function onBackKeyDown() {
     history.go(-1);
-    navigator.app.backHistory();
 }
