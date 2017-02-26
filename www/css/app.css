@@ -50,9 +50,21 @@
     margin-left: 16px;
 }
 
+.margin_right_0 {
+    margin-left: 0;
+}
+
+.margin_left_0 {
+    margin-left: 0;
+}
+
 .margin_top_bottom_16 {
     margin-top: 16px;
     margin-bottom: 16px;
+}
+
+.margin_bottom_0 {
+    margin-bottom: 0;
 }
 
 .icon_align_center {

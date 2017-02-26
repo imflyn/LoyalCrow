@@ -63,14 +63,14 @@ function search() {
     document.getElementById('search_result').style.visibility = 'visible';
     document.getElementById('browse_history').style.visibility = 'hidden';
     show_loading_dialog();
-    var url = "http://192.168.1.102:5000/search?keyword=" + text;
+    var url = HTTP_DOMAIN + "/search?keyword=" + text;
     var request = sendGetRequest(url, function () {
             hide_loading_dialog();
             if (request.readyState == 4 && request.status == 200) {
                 sessionStorage.setItem('search_result_list', request.responseText);
                 handleSearchData(request.responseText)
             } else {
-                var myjson = "[{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"}]";
+                var myjson = "[{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"独墅苑\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"},{\"name\":\"522\",\"type\":\"0002\"},{\"name\":\"822\",\"type\":\"0002\"},{\"name\":\"922\",\"type\":\"0002\"},{\"name\":\"228\",\"type\":\"0002\"},{\"name\":\"322\",\"type\":\"0002\"},{\"name\":\"622\",\"type\":\"0002\"},{\"name\":\"华元路227省道西\",\"type\":\"0001\"}]";
                 sessionStorage.setItem('search_result_list', myjson);
                 handleSearchData(myjson);
                 // var parent = document.getElementById('ul_search_result');
@@ -89,10 +89,10 @@ function handleSearchData(result_json) {
         (function (index) {
             li.onclick = function () {
                 if (result_list[index].type == "0001") {
-                    turnToRoute(result_list[index].name)
+                    turnToStation(result_list[index].name)
                 }
                 else {
-                    turnToStation(result_list[index].name)
+                    turnToRoute(result_list[index].name)
                 }
             };
         })(i);
@@ -125,10 +125,10 @@ function handleHistoryData(result_list) {
         (function (index) {
             li.onclick = function () {
                 if (result_list[index].type == "0001") {
-                    turnToRoute(result_list[index].name)
+                    turnToStation(result_list[index].name)
                 }
                 else {
-                    turnToStation(result_list[index].name)
+                    turnToRoute(result_list[index].name)
                 }
             };
         })(i);
@@ -167,7 +167,7 @@ function turnToStation(station) {
     }
     browse_list.unshift(new Object({
         name: station,
-        type: "0002"
+        type: "0001"
     }));
     if (browse_list.length > 10) {
         browse_list.pop();
@@ -184,7 +184,7 @@ function turnToRoute(route) {
     }
     browse_list.unshift(new Object({
         name: route,
-        type: "0001"
+        type: "0002"
     }));
     if (browse_list.length > 10) {
         browse_list.pop();
