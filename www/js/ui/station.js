@@ -109,7 +109,7 @@ function handle_real_time_data(position, route_list) {
         var span_direction = document.createElement("span");
         span_direction.setAttribute("class", "station_segment text_color_primary");
         var route_direction = route_list[i].direction;
-        if (route_direction != null && route_direction.indexOf('=>') < 0) {
+        if (route_direction != null && route_direction.indexOf('=>') < 0 && (route_direction.length != 2 && route_direction.indexOf('线') < 0)) {
             route_direction = '开往' + route_direction;
         }
         span_direction.innerHTML = route_direction;
