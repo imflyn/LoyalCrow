@@ -31,14 +31,26 @@
     </header>
     <div class="row margin_bottom_0" id="div_tab_row">
         <div class="col s12 " id="div_tab">
-            <ul class="tabs ">
-                <li class="tab col s6 "><a class="active " id="tab1"></a></li>
-                <li class="tab col s6 "><a class="disabled " id="tab2"></a></li>
+            <ul class="tabs" id="tab">
+                <li class="tab col s6 "><a href="#ul_data_list_1" class="active" id="tab1"></a></li>
+                <li class="tab col s6 "><a href="#ul_data_list_2" class="disabled " id="tab2"></a></li>
             </ul>
         </div>
     </div>
-    <div class='z-depth-1 main bg_grey'>
-
+    <div class="div_single_tab" id="single_tab">
+        <span class="span_single_tab" id="single_tab_text"></span>
+    </div>
+    <div class='main bg_grey' id="data_list">
+        <ul class="collection data_list" id="ul_data_list_1">
+            <!--<li class="waves-effect collection-item row data_list_item">-->
+                <!--<div class="div_round_icon"><span class="round_icon_text">游1</span></div>-->
+                <!--<span class="station_segment text_color_primary">顺贤路->盛泽荡路(东)</span>-->
+                <!--<div class="station_license"><span class="text_color_primary">苏E-88888</span></div>-->
+                <!--<div class="station_distance"><span class="text_color_primary">即将进站</span></div>-->
+            <!--</li>-->
+        </ul>
+        <ul class="collection data_list" id="ul_data_list_2">
+        </ul>
     </div>
 </div>
 <div class="grey bg_loading" id="loading_dialog">
@@ -57,7 +69,7 @@
             </div>
         </div>
     </div>
-    <span style="font-size: 16px;padding-top: 4px;margin-left: 24px">正在搜索...</span>
+    <span style="font-size: 16px;padding-top: 4px;margin-left: 24px">正在加载数据...</span>
 </div>
 
 </body>

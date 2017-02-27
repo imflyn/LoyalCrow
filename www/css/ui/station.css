@@ -5,13 +5,23 @@
     -webkit-box-orient: vertical;
 }
 
+ul {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    -webkit-padding-start: 0;
+}
+
 .main {
     position: fixed;
     -webkit-box-flex: 1.0;
     overflow-y: scroll;
-    padding-bottom: 8px;
-    height: 100%;
+    height: calc(100% - 104px);
     width: 100%;
+    -webkit-overflow-scrolling: touch;
 }
 
 .main-wrap {
@@ -54,10 +64,6 @@
     padding: 0;
 }
 
-#div_tab_row {
-    display: none;
-}
-
 .tabs .tab a {
     color: #4db6ac;
     display: block;
@@ -86,4 +92,97 @@
     height: 2px;
     background-color: #26a69a;
     will-change: left, right;
+}
+
+.browse_list_collection {
+    border-radius: 0;
+    border: 0;
+}
+
+.div_round_icon {
+    position: absolute;
+    margin: auto auto auto 16px;
+    top: 0;
+    bottom: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    line-height: 52px;
+    background-color: #26a69a;
+}
+
+.round_icon_text {
+    position: absolute;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    background-color: transparent;
+    color: white;
+}
+
+.collection-item.data_list_item {
+    height: 80px;
+    line-height: 80px;
+    padding: 0 0 0 0;
+    display: list-item;
+    border: 0;
+    min-height: 80px;
+}
+
+.data_list {
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+}
+
+.station_segment {
+    position: relative;
+    font-size: 16px;
+    margin-left: 88px;
+}
+
+.station_license {
+    position: absolute;
+    margin: auto;
+    bottom: 12px;
+    right: 16px;
+    font-size: 16px;
+}
+
+.station_distance {
+    position: absolute;
+    margin: auto;
+    top: 12px;
+    right: 16px;
+    font-size: 16px;
+}
+
+.div_single_tab {
+    position: relative;
+    line-height: 48px;
+    height: 48px;
+    background-color: white;
+    color: #26a69a;
+}
+
+.span_single_tab {
+    position: absolute;
+    font-size: 16px;
+    text-align: center;
+    left: 0;
+    right: 0;
+}
+
+#div_tab_row {
+    display: none;
+}
+
+#single_tab {
+    display: none;
+}
+
+#data_list {
+    display: none;
 }
