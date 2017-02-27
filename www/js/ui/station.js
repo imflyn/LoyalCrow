@@ -17,7 +17,6 @@ function load_station_data() {
     show_loading_dialog();
     var url = HTTP_DOMAIN + "/station?name=" + station;
     var request = sendGetRequest(url, function () {
-            hide_loading_dialog();
             if (request.readyState == 4 && request.status == 200) {
                 handle_station_data(JSON.parse(request.responseText))
             }
