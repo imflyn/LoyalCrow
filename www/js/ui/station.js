@@ -43,11 +43,11 @@ function handle_station_data(station_data) {
         var tab1 = document.getElementById('tab1');
         var tab2 = document.getElementById('tab2');
         var tab = document.getElementById('tab');
-
         var station2 = station_data[1];
         tab1.innerHTML = station1.road + "(" + station1.road_direction + ")";
+        tab1.setAttribute("class", "active");
         tab2.innerHTML = station2.road + "(" + station2.road_direction + ")";
-
+        tab2.setAttribute("class", "active");
         load_real_time_route(0, station1.number);
         load_real_time_route(1, station2.number);
     } else {
@@ -89,7 +89,6 @@ function handle_real_time_data(position, route_list) {
     for (var i = 0; i < route_list.length; i++) {
         var li = document.createElement("li");
         li.setAttribute("class", "waves-effect collection-item row data_list_item");
-
         //路线名称
         var div_round_icon = document.createElement("div");
         div_round_icon.setAttribute("class", "div_round_icon");
@@ -104,7 +103,6 @@ function handle_real_time_data(position, route_list) {
             span_round_icon.innerHTML = route;
         }
         div_round_icon.appendChild(span_round_icon);
-
         //方向
         var span_direction = document.createElement("span");
         span_direction.setAttribute("class", "station_segment text_color_primary");
@@ -113,7 +111,6 @@ function handle_real_time_data(position, route_list) {
             route_direction = '开往' + route_direction;
         }
         span_direction.innerHTML = route_direction;
-
         //牌照
         var div_station_license = document.createElement("div");
         div_station_license.setAttribute("class", "station_license");
@@ -121,12 +118,11 @@ function handle_real_time_data(position, route_list) {
         span_station_license.setAttribute("class", "text_color_primary");
         var route_license = route_list[i].license;
         if (route_license == null || route_license.indexOf('无') >= 0) {
-            span_station_license.innerHTML = '尚未开通';
+            span_station_license.innerHTML = '暂无信息';
         } else {
             span_station_license.innerHTML = route_license;
         }
         div_station_license.appendChild(span_station_license);
-
         //到站距离
         var div_station_distance = document.createElement("div");
         div_station_distance.setAttribute("class", "station_distance");
@@ -135,18 +131,16 @@ function handle_real_time_data(position, route_list) {
         var route_distance = route_list[i].station_spacing;
         if (route_distance == null || route_distance.indexOf('无') >= 0) {
             span_station_distance.innerHTML = '';
-        } else if (route_license.indexOf('进站') >= 0) {
+        } else if (route_distance.indexOf('进站') >= 0) {
             span_station_distance.innerHTML = '即将进站';
         } else {
             span_station_distance.innerHTML = '距离' + route_distance + '站';
         }
         div_station_distance.appendChild(span_station_distance);
-
         li.appendChild(div_round_icon);
         li.appendChild(span_direction);
         li.appendChild(div_station_license);
         li.appendChild(div_station_distance);
-
         (function (index) {
             li.onclick = function () {
                 window.location.href = 'route.html?route=' + route_list[index].route;

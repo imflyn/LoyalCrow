@@ -114,16 +114,16 @@
 }
 
 ::-webkit-scrollbar:vertical {
-    width: 10px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar:horizontal {
-    height: 10px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
     background-color: #26a69a;
-    border-radius: 10px;
+    border-radius: 8px;
     border: 2px solid #ffffff;
 }
 
