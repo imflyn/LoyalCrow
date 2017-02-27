@@ -95,7 +95,14 @@ function handle_real_time_data(position, route_list) {
         div_round_icon.setAttribute("class", "div_round_icon");
         var span_round_icon = document.createElement("span");
         span_round_icon.setAttribute("class", "round_icon_text");
-        span_round_icon.innerHTML = route_list[i].route;
+        var route = route_list[i].route;
+        if (route != null && route.indexOf('快线') >= 0) {
+            route = route.replace('线', '');
+            route = route.replace('号', '');
+            span_round_icon.innerHTML = route;
+        } else {
+            span_round_icon.innerHTML = route;
+        }
         div_round_icon.appendChild(span_round_icon);
 
         //方向
@@ -115,8 +122,9 @@ function handle_real_time_data(position, route_list) {
         var route_license = route_list[i].license;
         if (route_license == null || route_license.indexOf('无') >= 0) {
             span_station_license.innerHTML = '尚未开通';
-        } else
+        } else {
             span_station_license.innerHTML = route_license;
+        }
         div_station_license.appendChild(span_station_license);
 
         //到站距离
@@ -138,6 +146,12 @@ function handle_real_time_data(position, route_list) {
         li.appendChild(span_direction);
         li.appendChild(div_station_license);
         li.appendChild(div_station_distance);
+
+        (function (index) {
+            li.onclick = function () {
+                window.location.href = 'route.html?route=' + route_list[index].route;
+            }
+        })(i);
         parent.appendChild(li);
     }
 }
