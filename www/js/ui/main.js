@@ -86,7 +86,6 @@ function onGetCurrentPosition(lngLat, citycode) {
     draw_center_marker(lngLat);
     search_bus_station(lngLat, citycode);
 }
-
 //移动地图
 function map_move_to(lngLat) {
     map.setZoom(15);
@@ -129,6 +128,25 @@ function draw_marker(lngLat, title) {
         content: title
     });
     marker.on('click', function () {
+        if (title.indexOf('(公交站)') >= 0) {
+            title = title.replace('(公交站)', '');
+        }
+        var browse_list = JSON.parse(localStorage.getItem('browse_history'));
+        for (var i = 0; i < browse_list.length; i++) {
+            if (browse_list[i].name == title) {
+                window.location.href = 'station.html?station=' + title;
+                return;
+            }
+        }
+        browse_list.unshift(new Object({
+            name: title,
+            type: "0001"
+        }));
+        if (browse_list.length > 10) {
+            browse_list.pop();
+        }
+        localStorage.setItem('browse_history', JSON.stringify(browse_list));
+        window.location.href = 'station.html?station=' + title;
     });
     marker_list.push(marker);
 }

@@ -1,9 +1,13 @@
 window.addEventListener('load', function () {
     document.addEventListener('deviceready', onDeviceReady, false);
+    document.addEventListener('resume', onResume, false);
+    document.addEventListener('pause', onPause, false);
 });
 var station = get_url_params()['station'];
 document.getElementById('station_title').innerHTML = station + '(公交站)';
+show_loading_dialog();
 load_station_data();
+start_timer();
 //=============================================================================================================================================
 //=============================================================================================================================================
 function onDeviceReady() {
@@ -13,8 +17,16 @@ function onDeviceReady() {
 function onBackKeyDown() {
     history.go(-1);
 }
+function onPause() {
+    if (null != timer1) {
+        window.clearInterval(timer1);
+        timer1 = null;
+    }
+}
+function onResume() {
+    start_timer();
+}
 function load_station_data() {
-    show_loading_dialog();
     var url = HTTP_DOMAIN + "/station?name=" + station;
     var request = sendGetRequest(url, function () {
             if (request.readyState == 4 && request.status == 200) {
@@ -54,14 +66,11 @@ function handle_station_data(station_data) {
         div_tab_row.style.display = "none";
         single_tab.style.display = "block";
         data_list.style.display = "block";
-
         var single_tab_text = document.getElementById('single_tab_text');
         single_tab_text.innerHTML = station1.road + "(" + station1.road_direction + ")";
-
         load_real_time_route(0, station1.number);
     }
 }
-
 function load_real_time_route(position, station_number) {
     var url = HTTP_DOMAIN + "/real_time_station?number=" + station_number;
     var request = sendGetRequest(url, function () {
@@ -72,7 +81,6 @@ function load_real_time_route(position, station_number) {
         }
     );
 }
-
 function handle_real_time_data(position, route_list) {
     var parent;
     if (position == 0) {
@@ -119,6 +127,7 @@ function handle_real_time_data(position, route_list) {
         var route_license = route_list[i].license;
         if (route_license == null || route_license.indexOf('无') >= 0) {
             span_station_license.innerHTML = '暂无信息';
+            div_station_license.style.bottom = 0;
         } else {
             span_station_license.innerHTML = route_license;
         }
@@ -148,4 +157,11 @@ function handle_real_time_data(position, route_list) {
         })(i);
         parent.appendChild(li);
     }
+}
+var timer1;
+function start_timer() {
+    if (null != timer1) {
+        window.clearInterval(timer1);
+    }
+    timer1 = window.setInterval(load_station_data, 60000);//1000为1秒钟
 }
