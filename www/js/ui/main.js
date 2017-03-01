@@ -62,8 +62,8 @@ function init_my_position() {
         my_position = [data.position.getLng(), data.position.getLat()];
         sessionStorage.setItem('my_position', my_position);
         sessionStorage.setItem('citycode', data.addressComponent.citycode);
-        hide_loading_dialog();
         onGetCurrentPosition(my_position, data.addressComponent.citycode);
+        hide_loading_dialog();
     }
 
     //解析定位错误信息
