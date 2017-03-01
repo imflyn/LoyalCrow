@@ -165,3 +165,6 @@ function start_timer() {
     }
     timer1 = window.setInterval(load_station_data, 60000);//1000为1秒钟
 }
+function turnToStationMap() {
+    window.location.href = 'station_map.html?station=' + station;
+}

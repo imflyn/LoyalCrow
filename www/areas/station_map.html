@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title></title>
+    <script type="text/javascript" src="../cordova.js"></script>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection"/>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <!--高德地图-->
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=b89262d7841f1c7911f73f97ea6815cb&plugin=AMap.StationSearch"></script>
+    <script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>
+
+    <script type="text/javascript" src="../js/core/constants.js"></script>
+    <script type="text/javascript" src="../js/core/utils.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/ui/station_map.css">
+    <link rel="stylesheet" type="text/css" href="../css/app.css">
+</head>
+<body>
+<div class="content">
+    <header class="z-depth-1 theme_bg_color title">
+        <button id="btn_back" class="waves-effect transparent btn-flat" onclick="onBackKeyDown()">
+            <img src="../img/ic_back_white.svg" id="img_back_white">
+        </button>
+        <span class="white-text" id="station_title"></span>
+    </header>
+    <div id="container"></div>
+</div>
+</body>
+<script src="../js/ui/station_map.js"></script>
+</html>

@@ -41,7 +41,7 @@ ul {
 
 #station_title {
     position: relative;
-    top: 2px;
+    top: 3px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -49,6 +49,17 @@ ul {
     width: 100%;
     font-size: 1.2rem;
     margin-left: 24px;
+}
+
+#map {
+    position: absolute;
+    top: 2px;
+    bottom: 0;
+    right: 0;
+    height: 56px;
+    width: 100px;
+    line-height: 56px;
+    font-size: 14px;
 }
 
 #div_tab {
