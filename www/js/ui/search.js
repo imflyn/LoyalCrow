@@ -9,6 +9,7 @@ load_data();
 function onDeviceReady() {
     document.addEventListener('backbutton', onBackKeyDown, false);
     document.addEventListener('searchbutton', onSearchButtonDown, false);
+    StatusBar.show();
     StatusBar.backgroundColorByHexString(theme_color_accent);
 }
 function onBackKeyDown() {

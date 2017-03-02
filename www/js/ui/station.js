@@ -12,6 +12,7 @@ start_timer();
 //=============================================================================================================================================
 function onDeviceReady() {
     document.addEventListener('backbutton', onBackKeyDown, false);
+    StatusBar.show();
     StatusBar.backgroundColorByHexString(theme_color_accent);
 }
 function onBackKeyDown() {

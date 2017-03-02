@@ -8,10 +8,85 @@
           content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <title></title>
     <script type="text/javascript" src="../cordova.js"></script>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection"/>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
 
+    <script type="text/javascript" src="../js/core/constants.js"></script>
+    <script type="text/javascript" src="../js/core/utils.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/ui/route.css">
+    <link rel="stylesheet" type="text/css" href="../css/app.css">
 </head>
 <body>
-
+<div class="content">
+    <header class="z-depth-1 theme_bg_color  title">
+        <button id="btn_back" class="waves-effect waves-light transparent btn-flat" onclick="onBackKeyDown()">
+            <img src="../img/ic_back_white.svg" id="img_back_white">
+        </button>
+        <span class="white-text" id="route_title"></span>
+        <button id="map" class="waves-effect transparent white-text btn-flat" onclick="turnToRouteMap()">
+            <img src="../img/ic_map.svg" id="img_map_white">
+        </button>
+    </header>
+    <div class="row margin_bottom_0" id="div_tab_row">
+        <div class="col s12 " id="div_tab">
+            <ul class="tabs" id="tab">
+                <li class="tab col s6 "><a href="#ul_data_list_1" class="active" id="tab1"></a></li>
+                <li class="tab col s6 "><a href="#ul_data_list_2" class="disabled" id="tab2"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="div_single_tab" id="single_tab">
+        <span class="span_single_tab" id="single_tab_text"></span>
+    </div>
+    <div class='main bg_grey' id="data_list">
+        <div id="ul_data_list_1">
+            <div id="route_info_1">
+                <p><span class="route_info text_color_primary" id="route_time_1">首班车：6:00  末班车：22:00</span></p>
+                <p><span class="route_info text_color_primary" id="route_interval_1">高峰：10分钟/班 平峰：10分钟/班</span></p>
+            </div>
+            <ul class="collection data_list">
+                <li class="waves-effect collection-item row data_list_item">
+                    <!--<div class="div_round_icon"><span class="round_icon_text">1</span></div>-->
+                    <!--<span class="station_segment text_color_primary">顺贤路</span>-->
+                    <!--<div class="station_license"><span class="text_color_primary">苏E-88888</span></div>-->
+                    <!--<div class="station_distance"><span class="text_color_primary">即将进站</span></div>-->
+                </li>
+            </ul>
+        </div>
+        <div id="ul_data_list_2">
+            <div id="route_info_2">
+                <p><span class="route_info text_color_primary" id="route_time_2">首班车：6:00  末班车：22:00</span></p>
+                <p><span class="route_info text_color_primary" id="route_interval_2">高峰：10分钟/班 平峰：10分钟/班</span></p>
+            </div>
+            <ul class="collection data_list">
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="grey bg_loading" id="loading_dialog">
+</div>
+<div class="card-panel white loading_panel valign-wrapper" id="loading_bg">
+    <div class="preloader-wrapper small active">
+        <div class="spinner-layer spinner-green-only theme_border_color" id="loading_progress">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+    <span style="font-size: 16px;padding-top: 4px;margin-left: 24px">正在加载数据...</span>
+</div>
 
 </body>
+<script src="../js/ui/route.js"></script>
 </html>
