@@ -149,5 +149,5 @@ function start_timer() {
     timer1 = window.setInterval(load_route_data, 60000);//1000为1秒钟
 }
 function turnToRouteMap() {
-    window.location.href = 'route_map.html?route=' + station;
+    window.location.href = 'route_map.html?route=' + route;
 }
