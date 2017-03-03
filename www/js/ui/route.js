@@ -66,9 +66,9 @@ function handle_route_data(route_data) {
         tab2.innerHTML = ("开往") + route2.end_station;
         tab2.setAttribute("class", "active");
         route_time_1.innerHTML = "首班车：" + route1.start_time.substring(9, route1.start_time.length - 3) + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp末班车：" + route1.end_time.substring(9, route1.start_time.length - 2);
-        route_interval_1.innerHTML = "高峰：" + route1.peak_departure_interval + "分钟/班&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp平峰：" + route1.low_departure_interval + "/班";
+        route_interval_1.innerHTML = "高峰：" + route1.peak_departure_interval + "分钟/班&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp平峰：" + route1.low_departure_interval + "分钟/班";
         route_time_2.innerHTML = "首班车：" + route2.start_time.substring(9, route2.start_time.length - 3) + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp末班车：" + route2.end_time.substring(9, route2.start_time.length - 2);
-        route_interval_2.innerHTML = "高峰：" + route2.peak_departure_interval + "分钟/班&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp平峰：" + route2.low_departure_interval + "/班";
+        route_interval_2.innerHTML = "高峰：" + route2.peak_departure_interval + "分钟/班&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp平峰：" + route2.low_departure_interval + "分钟/班";
         load_real_time_route(0, route1.number, route1.GUID);
         load_real_time_route(1, route2.number, route2.GUID);
     } else {
