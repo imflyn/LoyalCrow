@@ -25,6 +25,16 @@ body, html, #container {
     visibility: hidden;
 }
 
+#btn_transfer {
+    position: absolute;
+    margin: auto;
+    bottom: 16px;
+    right: 16px;
+    width: 56px;
+    height: 56px;
+    padding: 1px;
+}
+
 #search_bar {
     position: absolute;
     width: 100%;

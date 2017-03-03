@@ -20,7 +20,7 @@ map.on('complete', function () {
     }
 });
 map.on('moveend', function () {
-    document.getElementsByClassName("amap-toolbar")[0].style.visibility = "hidden";
+    // document.getElementsByClassName("amap-toolbar")[0].style.visibility = "hidden";
     draw_center_marker([map.getCenter().lng, map.getCenter().lat]);
     search_bus_station([map.getCenter().lng, map.getCenter().lat]);
 });
@@ -210,4 +210,7 @@ function search_bus_station(lngLat, citycode) {
 }
 function go_to_search() {
     window.location.href = 'search.html';
+}
+function turnToTransfer() {
+    window.location.href = 'transfer.html';
 }
